@@ -15,7 +15,7 @@ The data collected is:
 - [CentOS 7] - CentOS 7 as Operating System.
 
 
-## :robot_face: Tech
+## :robot: Tech
 
 - [jq] - command-line JSON processor.
 - [Speedtest CLI] - Internet connection measurement for developers
