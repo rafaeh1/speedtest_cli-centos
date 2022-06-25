@@ -2,6 +2,7 @@
 export SHELL=/bin/bash
 export PATH=/usr/local/sbain:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
+
 Color_Off="$(printf '\033[0m')" #returns to "normal"
 BBlue="$(printf '\e[1;36m')" #set green
 BGreen="$(printf '\e[1;32m')" #set green
@@ -19,7 +20,7 @@ pSuccess() {
   echo "${BGreen}$1${Color_Off}"
 }
 
-id=1 #SITE ID
+id=99 #SITE ID
 pInfo ">> getting path & file name"
 datetime=`date +"%Y-%m-%d %T"`
 path=~/results/
@@ -40,8 +41,8 @@ upload=$(printf %.2f\\n "$((upraw * 8))e-6")
 latency=$(jq -r '.ping.latency' $path$filename)
 jitter=$(jq -r '.ping.jitter' $path$filename)
 packetLossData=$(jq -r '.packetLoss' $path$filename)
-#packetLossData=.352112676056338
-#packetLossData=0
+isp=$(jq -r '.isp' $path$filename)
+externalIP=$(jq -r '.interface.externalIp' $path$filename)
 echo "packetLossData = $packetLossData"
 
 if  [ $packetLossData = null ] || [ $packetLossData = 0 ] ; then
@@ -53,7 +54,7 @@ else
   packetloss=$(printf "%.3f" "$packetLossData")
 fi
 
-JSON='{"id": { "S": "'"$id"'" }, "date": { "S": "'"$datetime"'" } ,"download": { "S": "'"$download"'" }, "upload": { "S": "'"$upload"'" }, "latency": { "S": "'"$latency"'"}, "jitter": { "S": "'"$jitter"'" }, "packetLoss": { "S": "'"$packetloss"'"}}' 
+JSON='{"id": { "S": "'"$id"'" }, "date": { "S": "'"$datetime"'" } ,"download": { "S": "'"$download"'" }, "upload": { "S": "'"$upload"'" }, "latency": { "S": "'"$latency"'"}, "jitter": { "S": "'"$jitter"'" }, "packetLoss": { "S": "'"$packetloss"'"}, "isp": { "S": "'"$isp"'"}, "externalIP": { "S": "'"$externalIP"'"}}' 
 echo "$JSON" > data.json
 
 pInfo ">> results: "
@@ -78,7 +79,6 @@ aws dynamodb query \
     #--projection-expression "#date" \
     #--output table
     #--expression-attribute-names '{"#id":"id", "#date":"date"}' \
-
 
 pInfo ">> file stored in $path$filename"
 pSuccess ">> Done!"
