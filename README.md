@@ -28,8 +28,8 @@ Install the dependencies.
 
 ```sh
 #install jq
-$ sudo yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-$ sudo yum install jq -y
+$ yum install epel-release -y
+$ yum install jq -y
 
 #install Speedtest CLI
 $ curl -s https://install.speedtest.net/app/cli/install.rpm.sh | sudo bash

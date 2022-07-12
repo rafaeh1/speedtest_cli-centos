@@ -1,0 +1,1 @@
+{"id": { "S": "55" }, "date": { "S": "2022-07-11T23:39:40.000Z" } ,"download": { "S": "22.90" }, "upload": { "S": "19.25" }, "latency": { "S": "24.253"}, "jitter": { "S": "1.656" }, "packetLoss": { "S": "0"}, "isp": { "S": "Velocom SA De Cv"}, "externalIP": { "S": "45.188.164.33"}}
