@@ -94,7 +94,7 @@ $ crontab -e
 
 
 ##  :question: Get help
-Please email to [support@happyguest.mx](support@happyguest.mx)
+Please email to [rafah.larios@gmail.com](rafah.larios@gmail.com)
 
 
 
